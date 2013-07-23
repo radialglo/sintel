@@ -1,3 +1,8 @@
+/**
+ * style.css
+ * 
+ * @author Anthony Su
+ */
 
 * {
   transition: all 300ms ease-in-out;
@@ -10,7 +15,7 @@ body {
   font-family: arial, sans-serif;
 }
 
-h1, h2 {
+h1 {
   padding: 40px 0;
   text-align: right;
   color: white;
@@ -33,7 +38,7 @@ h1, h2 {
 .set {
   opacity: 1;
 }
-.set > div {
+.set .img_container {
   position: relative;
   margin: 4px 2px;
   padding: 3px;
@@ -41,7 +46,16 @@ h1, h2 {
   display: inline-block;
   background: rgba(0,0,0,0.1);
   z-index: 998;
+  cursor: pointer;
 }
+.set .img_container:hover {
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  transform: scale(1.3);
+  background: rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
 #container span.digit {
   position: absolute;
   bottom: 0;
@@ -50,7 +64,9 @@ h1, h2 {
   color: white;
   padding: 1em;
   z-index: 999;
+  background: rgba(0, 0, 0, 0.3);
 }
+
 img {
   /* width: 150px */
   /*
@@ -212,12 +228,86 @@ img {
  
   }
 }
+
+/* firefox keyframes */
+@-moz-keyframes bounce_2 {
+  0% {
+    -moz-transform:translateY(0%) rotateZ(-90deg);
+
+  }
+  25% {
+    -moz-transform:translateY(10%)rotateZ(-90deg);
+
+  }
+  50% {
+    -moz-transform:translateY(25%) rotateZ(-90deg);
+
+  }
+  75% {
+    -moz-transform:translateY(10%) rotateZ(-90deg);
+
+  }
+  100% {
+    -moz-transform:translateY(0%) rotateZ(-90deg);
+
+
+  }
+}
+
+@-moz-keyframes bounce_1 { 
+  0% {
+    -moz-transform:translateY(0%) rotateZ(90deg);
+
+  }
+  25% {
+    -moz-transform:translateY(-10%)rotateZ(90deg);
+
+  }
+  50% {
+    -moz-transform:translateY(-25%) rotateZ(90deg);
+
+  }
+  75% {
+    -moz-transform:translateY(-10%) rotateZ(90deg);
+
+  }
+  100% {
+    -moz-transform:translateY(0%) rotateZ(90deg);
+
+
+  }
+}
+@-moz-keyframes hide{ 
+  0% {
+    width: 75px;
+
+  }
+
+  100% {
+    width: 0;
+ 
+  }
+}
+@-moz-keyframes show { 
+  0% {
+    width: 0;     
+
+  }
+
+  100% {
+
+    width: 75px;
+ 
+  }
+}
 .hide-anim  div {
   -webkit-animation: hide 900ms ;
+  -moz-animation: hide 900ms ;
   animation: hide 400ms ;
 }
 .show-anim div {
   -webkit-animation: show 900ms ;
+  -moz-animation: hide 900ms ;
   animation: show 400ms ;
 }
 .show {
@@ -274,4 +364,35 @@ dd.s_familiarity {
 }
 dd.t_range {
   color: #01a2ff;
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10000;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…VpZ2h0PSIxMDEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+  background: -moz-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  background: -webkit-gradient(radial,center center,0px,center center,100%,color-stop(0%,rgba(0,0,0,0.4)),color-stop(100%,rgba(0,0,0,0.9)));
+  background: -webkit-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  background: -o-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  background: -ms-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  background: radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000000',endColorstr='#e6000000',GradientType=1);
+  text-align: center;
+}
+
+#overlay img {
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 10002;
+  margin: 4em auto;
+}
+
+.selected {
+  /*background: #0cf !important;*/
+  box-shadow: 0 0 6px rgba(0,240,255,0.7)!important
 }

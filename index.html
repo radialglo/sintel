@@ -8,111 +8,8 @@
   <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
   <link href="css/style.css" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript">
-  
-  function show($elem) {
-    $elem.addClass('show');setTimeout(function(){$elem.removeClass('hide').addClass('show-anim')},400);
-  }
-  function hide($elem) {
-    $elem.removeClass('show-anim').removeClass('show').addClass('hide-anim');setTimeout(function(){$elem.addClass('hide')},400);
-  }
-
-  var ZERO = SMALL = 0, ONE = MEDIUM = 1, TWO = LARGE = 2, THREE = 3, ALL = 4;
-  var FRAME_SIZE = {
-    SMALL: 75,
-    MEDIUM: 150,
-    LARGE: 300
-  };
-  var CFG = {
-     frame_width: FRAME_SIZE.MEDIUM,
-     threshold_on: false, 
-     DIRECTORIES: [["one", 15, true],["two", 29, true],["three", 56, true]],
-     first_load: true
-  };
-  var set_id = ["set_one","set_two","set_three"];
-  var $container;
-
-  // $('#set_one').addClass('show');setTimeout(function(){$('#set_one').removeClass('hide').addClass('show-anim')},400);
-  // $('#set_one').removeClass('show-anim').removeClass('show').addClass('hide-anim');setTimeout(function(){$('#set_one').addClass('hide')},400);
-    window.onload = function() {
-  
-        //var DIRECTORIES = [["one", 15, true],["two", 29, true],["three", 56, true]/*,["four/150", 224, true]/*,["five/150", 446, true]*/];
-            $container = $('#container');
-            var $fragment = $(document.createDocumentFragment());
-
-        $(CFG.DIRECTORIES).each(function(idx,arr) {
-        
-            var COUNT = arr[1],
-        IDX_LIMIT = COUNT + 1,
-            $set = $('<div/>').attr({id: set_id[idx], class:'set'});
-  
-
-        var container = document.querySelector('#container');
-        for(var i = 1; i < IDX_LIMIT; i++) {
-          var div = document.createElement('div') 
-            , img = document.createElement('img')
-            , span = document.createElement('span');
-
-          img.src = arr[0] + "/"+ CFG.frame_width+ "/" + i.toString().replace(/^(\d)$/,"00$1").replace(/^(\d\d)$/,"0$1") + (CFG.threshold_on ? "_threshold" : "")+ "_" + CFG.frame_width + ".png";
-          img.setAttribute("data-index", i);
-          span.appendChild(document.createTextNode(i));
-          span.setAttribute("class","digit");
-          div.appendChild(img);
-          div.appendChild(span);
-          $set.append(div);
-        }
-        $set.append(document.createElement('hr'));
-        $fragment.append($set.addClass('hide'));
-
-      });
-
-      $container.append($fragment);
-     var view = document.querySelector('#view'),
-         toggle = document.querySelector('#toggle');
-      show($('.set').addClass("hide"));
-
-     $('#view').click(function() {
-        $('#toggle').toggleClass("down");
-        $('dl').toggleClass("hide_controls");
-     });
-
-    $("#controls").on("click","input", function() {
-  
-      var class_name = $(this).attr("name");
-      var i = $(this).attr("value");
-
-      switch(class_name) {
-        case "frame_set":
-          if(i == THREE) {
-            show($('.set'));
-          
-          } else {
-            hide($('.set').not(document.getElementById(set_id[i])));
-            show($('#' + set_id[i]));
-          }
-          break;
-        case "frame_size":
-          if(i === CFG.frame_widthL) {
-            break;
-          } else if (i == FRAME_SIZE.SMALL) {
-            CFG.frame_width = FRAME_SIZE.SMALL;
-          } else if (i === FRAME_SIZE.MEDIUM) {
-            CFG.frame_width = FRAME_SIZE.MEDIUM;
-          } else {
-            CFG.frame_width = FRAME_SIZE.LARGE;
-          }
-          break;
-        default:
-          break;
-      }
-    });
-
-      CFG.first_load = false;
-    }
-
-    
-
-  </script>
+  <script type="text/javascript" src="js/data_one.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
   <div id="container">
@@ -126,40 +23,40 @@
         <dd class="l_quality">0 <input name="l_quality" type="radio" value="0"></dd>
         <dd class="l_quality">1 <input name="l_quality" type="radio" value="1"></dd>
         <dd class="l_quaility">2 <input name="l_quality" type="radio" value="2"></dd>
-        <dd class="l_quality">ALL <input name="l_quality" type="radio" value="3"></dd>
+        <dd class="l_quality">ALL <input name="l_quality" type="radio" value="3" checked="true"></dd>
        
         <dt>Line Orientation</dt>
         <dd class="l_orientation">0 <input name="l_orientation" type="radio" value="0"></dd>
         <dd class="l_orientation">1 <input name="l_orientation" type="radio" value="1"></dd>
         <dd class="l_orientation">2 <input name="l_orientation" type="radio" value="2"></dd>
-        <dd class="l_orientation">ALL <input name="l_orientation" type="radio" value="3"></dd>
+        <dd class="l_orientation">ALL <input name="l_orientation" type="radio" value="3"  checked="true"></dd>
         <dt>Space Depth</dt>
         <dd class="space_depth">0 <input name="space_depth" type="radio" value="0"></dd>
         <dd class="space_depth">1 <input name="space_depth" type="radio" value="1"></dd>
         <dd class="space_depth">2 <input name="space_depth" type="radio" value="2"></dd>
-        <dd class="space_depth">ALL <input name="space_depth" type="radio" value="3"></dd>
+        <dd class="space_depth">ALL <input name="space_depth" type="radio" value="3"  checked="true"></dd>
         <dt>Space Familiarity</dt>
         <dd class="s_familiarity">0 <input name="s_familiarity" type="radio" value="0"></dd>
         <dd class="s_familiarity">1 <input name="s_familiarity" type="radio" value="1"></dd>
         <dd class="s_familiarity">2 <input name="s_familiarity" type="radio" value="2"></dd>
-        <dd class="s_familiarity">ALL <input name="s_familiarity" type="radio" value="3"></dd>
-        <dt>Tonal Range</dt>
+        <dd class="s_familiarity">ALL <input name="s_familiarity" type="radio" value="3"  checked="true"></dd>
+        <dt>Tonal Range/Contrast</dt>
         <dd class="t_range">0 <input name="t_range" type="radio" value="0"></dd>
         <dd class="t_range">1 <input name="t_range" type="radio" value="1"></dd>
         <dd class="t_range">2 <input name="t_range" type="radio" value="2"></dd>
-        <dd class="t_range">ALL <input name="t_range" type="radio" value="3"></dd>
+        <dd class="t_range">ALL <input name="t_range" type="radio" value="3"  checked="true"></dd>
         <dt>Frame Set</dt>
         <dd class="frame_set">1 <input name="frame_set" type="radio" value="0"></dd>
         <dd class="frame_set">2 <input name="frame_set" type="radio" value="1"></dd>
         <dd class="frame_set">3 <input name="frame_set" type="radio" value="2"></dd>
-        <dd class="frame_set">ALL <input name="frame_set" type="radio" value="3"></dd>
+        <dd class="frame_set">ALL <input name="frame_set" type="radio" value="3"  checked="true"></dd>
         <dt>Frame Size</dt>
         <dd class="frame_size">S<input name="frame_size" type="radio" value="75"></dd>
-        <dd class="frame_size">M<input name="frame_size" type="radio" value="150"></dd>
+        <dd class="frame_size">M<input name="frame_size" type="radio" value="150"  checked="true"></dd>
         <dd class="frame_size">L<input name="frame_size" type="radio" value="300"></dd>
         <dt>Threshold</dt>
         <dd class="threshold">ON <input name="threshold" type="radio" value="0"></dd>
-        <dd class="threshold">OFF<input name="threshold" type="radio" value="1"></dd>
+        <dd class="threshold">OFF<input name="threshold" type="radio" value="1"  checked="true"></dd>
         <!-- add ability to toggle between different metrics
         -->
         <!-- add ability to toggle between different views 
@@ -171,5 +68,7 @@
      </div> <!-- end controls -->
     <h1>Sintel Deconstructed</h1>
   </div>
+
+  <div id="overlay"></div>
 </body>
 </html>
