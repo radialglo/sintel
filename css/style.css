@@ -11,8 +11,17 @@
 html {
   background: url(../img/bg.jpg), url(../img/bg-highlight.png);
 }
+
 body {
   font-family: arial, sans-serif;
+}
+
+.group:after {
+  content: ".";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
 }
 
 h1 {
@@ -119,11 +128,11 @@ img {
   -webkit-transform: rotateZ(90deg);
   -webkit-transform-origin: 0 50%;
   -moz-transform: rotateZ(90deg);
-  -moz-transform-origin: 0 0;
+  -moz-transform-origin: 0 50%;
   -ms-transform: rotateZ(90deg);
-  -ms-transform-origin: 0 0;
+  -ms-transform-origin: 0 50%;
   -o-transform: rotateZ(90deg);
-  -o-transform-origin: 0 0;
+  -o-transform-origin: 0 50%;
   top: 0;
   right: 10px;
   position: absolute;
@@ -135,11 +144,11 @@ img {
   -webkit-transform: rotateZ(-90deg);
   -webkit-transform-origin: 0 50%;
   -moz-transform: rotateZ(-90deg);
-  -moz-transform-origin: 0 0;
+  -moz-transform-origin: 0 50%;
   -ms-transform: rotateZ(-90deg);
-  -ms-transform-origin: 0 0;
+  -ms-transform-origin: 0 50%;
   -o-transform: rotateZ(-90deg);
-  -o-transform-origin: 0 0;
+  -o-transform-origin: 0 50%;
   right: 10px;
   position: absolute;
   top: 5px;
@@ -149,12 +158,14 @@ img {
 
 #view:hover div {
   -webkit-animation: bounce_1 800ms infinite;
-  animation: bounce 800ms infinite;
+  -moz-animation: bounce_1 800ms infinite;
+  animation: bounce_1 800ms infinite;
 }
 
  #view:hover div.down {
   -webkit-animation: bounce_2 800ms infinite;
-  animation: bounce 800ms infinite;
+  -moz-animation: bounce_2 800ms infinite;
+  animation: bounce_2 800ms infinite;
 }
 
 
@@ -277,6 +288,53 @@ img {
 
   }
 }
+@keyframes bounce_2 {
+  0% {
+    transform:translateY(0%) rotateZ(-90deg);
+
+  }
+  25% {
+    transform:translateY(10%)rotateZ(-90deg);
+
+  }
+  50% {
+    transform:translateY(25%) rotateZ(-90deg);
+
+  }
+  75% {
+    transform:translateY(10%) rotateZ(-90deg);
+
+  }
+  100% {
+    transform:translateY(0%) rotateZ(-90deg);
+
+
+  }
+}
+
+@keyframes bounce_1 { 
+  0% {
+    transform:translateY(0%) rotateZ(90deg);
+
+  }
+  25% {
+    transform:translateY(-10%)rotateZ(90deg);
+
+  }
+  50% {
+    transform:translateY(-25%) rotateZ(90deg);
+
+  }
+  75% {
+    transform:translateY(-10%) rotateZ(90deg);
+
+  }
+  100% {
+    transform:translateY(0%) rotateZ(90deg);
+
+
+  }
+}
 @-moz-keyframes hide{ 
   0% {
     width: 75px;
@@ -374,25 +432,94 @@ dd.t_range {
   right: 0;
   left: 0;
   z-index: 10000;
-  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…VpZ2h0PSIxMDEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
-  background: -moz-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: -webkit-gradient(radial,center center,0px,center center,100%,color-stop(0%,rgba(0,0,0,0.4)),color-stop(100%,rgba(0,0,0,0.9)));
-  background: -webkit-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: -o-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: -ms-radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  background: radial-gradient(center,ellipse cover,rgba(0,0,0,0.4) 0,rgba(0,0,0,0.9) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000000',endColorstr='#e6000000',GradientType=1);
+  background: rgba(0,0,0,0.8);
   text-align: center;
 }
 
 #overlay img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 96%;
+  max-height: 96%;
   z-index: 10002;
-  margin: 4em auto;
+  margin:  auto;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .selected {
   /*background: #0cf !important;*/
   box-shadow: 0 0 6px rgba(0,240,255,0.7)!important
 }
+
+.block {
+  text-align: center;
+}
+ 
+/* The ghost, nudged to maintain perfect centering */
+/* first element of block */
+.block:before  {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* adjusts for spacing of content*/
+}
+
+.rotate div {
+  -webkit-transform: rotate(25deg);
+  -moz-transform: rotate(25deg);
+}
+
+.fade {
+  opacity: 0.3;
+}
+
+.chart_container {
+  max-width: 900px;
+  margin: 2em auto;
+  border-bottom : 1px solid rgba(240,240,240,0.3);
+  border-top: 1px solid rgba(240,240,240,0.3);
+
+}
+
+#charts {
+  padding-top: 2em;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 11000;
+  margin: auto;
+  display: block;
+  display: none;
+}
+
+#charts h2 {
+  width: 900px;
+  margin: 0 auto;
+  text-align: left;
+  text-transform: uppercase;
+  color: white;
+}
+
+.color,
+.contrast,
+.line {
+  padding: 0;
+  margin: 0;
+  width: 1px;
+  height: 50px;
+  display: inline-block;
+  border-left: 1px solid rgba(240,240,240,0.3);
+}
+
+#view_charts {
+  color: #FC3;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+#view_charts:hover {
+  opacity: 1;
+}
+

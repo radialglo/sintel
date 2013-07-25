@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>&mdash; Sintel Desconstructed &mdash;</title>
   <link href="css/reset.min.css" type="text/css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
@@ -8,8 +9,8 @@
   <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
   <link href="css/style.css" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/data_one.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/sintel.min.js"></script>
+
 </head>
 <body>
   <div id="container">
@@ -57,18 +58,20 @@
         <dt>Threshold</dt>
         <dd class="threshold">ON <input name="threshold" type="radio" value="0"></dd>
         <dd class="threshold">OFF<input name="threshold" type="radio" value="1"  checked="true"></dd>
-        <!-- add ability to toggle between different metrics
-        -->
-        <!-- add ability to toggle between different views 
-            //threshold
-        -->
-        <!-- add ability to toggle between different sizes 
-        -->
+        <dt id="view_charts">View Charts</dt>
+        
+      
+     
       </dl>
      </div> <!-- end controls -->
     <h1>Sintel Deconstructed</h1>
   </div>
 
-  <div id="overlay"></div>
+  <div id="overlay" class="block"></div>
+
+  <div id="charts"></div>
+
+
+  </div><!-- end container -->
 </body>
 </html>
